@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { Participant } from "../../interfaces/";
+import "./ParticipantRow.scss";
 
 interface ParticipantRowProps {
   participant?: Participant;

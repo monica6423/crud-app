@@ -23,4 +23,23 @@ td {
   max-width: calc(912px / 4);
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: left;
+
+  div {
+    padding-left: 24px;
+    max-width: 176px;
+  }
+}
+
+tbody {
+  color: #505050;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.rotate {
+  opacity: 0.2;
+  vertical-align: middle;
+  margin-left: 10px;
 }

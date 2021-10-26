@@ -23,19 +23,19 @@ const ParticipantTable = () => {
           <th>
             <div>
               Name
-              <FiArrowDown />
+              <FiArrowDown className="rotate" />
             </div>
           </th>
           <th>
             <div>
               E-mail address
-              <FiArrowDown />
+              <FiArrowDown className="rotate" />
             </div>
           </th>
           <th>
             <div>
               Phone number
-              <FiArrowDown />
+              <FiArrowDown className="rotate" />
             </div>
           </th>
           <th></th>
