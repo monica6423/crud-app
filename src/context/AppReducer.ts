@@ -15,6 +15,16 @@ const appReducer = (state: any, action: any) => {
         ...state,
         participants: state.participants.filter((participant: any) => participant.id !== action.payload)
       }
+    case 'EDIT_PARTICIPANT':
+      const editParticipant = state.participants.map((p: any) => {
+        if (p.id === action.payload.id) return action.payload
+        return p
+      })
+
+      return {
+        ...state,
+        participants: editParticipant
+      }
     default:
       return state;
   }

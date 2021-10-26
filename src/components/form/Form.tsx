@@ -1,4 +1,11 @@
-import React, { useState, useContext, MouseEvent, ChangeEvent } from "react";
+import React, {
+  useState,
+  useContext,
+  MouseEvent,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./Form.scss";
 import { GlobalContext } from "../../context/GlobalState";
@@ -7,13 +14,17 @@ import { Participant } from "../../interfaces/";
 interface FormProps {
   participant?: Participant;
   edit: Boolean;
+  setEditMode?: Dispatch<SetStateAction<{ [key: string]: boolean }>>;
+  editMode?: { [key: string]: boolean };
 }
 
 const Form = ({
   participant = { name: "", phone: "", email: "", id: "" },
   edit,
+  setEditMode,
+  editMode,
 }: FormProps) => {
-  const { addParticipant } = useContext(GlobalContext);
+  const { addParticipant, editParticipant } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
     name: participant.name,
     email: participant.email,
@@ -51,6 +62,17 @@ const Form = ({
         id: "",
       });
     }
+  };
+
+  const onCancel = (e: MouseEvent) => {
+    e.preventDefault();
+    setEditMode && setEditMode({ ...editMode, [formData.id]: false });
+  };
+
+  const onSave = async (e: MouseEvent, formData: Participant) => {
+    e.preventDefault();
+    await editParticipant(formData);
+    setEditMode && setEditMode({ ...editMode, [formData.id]: false });
   };
 
   return (
@@ -97,8 +119,18 @@ const Form = ({
       <td className="button-cell">
         {edit ? (
           <>
-            <button className="button cancel-button">Cancel</button>
-            <button className="button save-button">Save</button>
+            <button
+              className="button cancel-button"
+              onClick={(e) => onCancel(e)}
+            >
+              Cancel
+            </button>
+            <button
+              className="button save-button"
+              onClick={(e) => onSave(e, formData)}
+            >
+              Save
+            </button>
           </>
         ) : (
           <button className="button" onClick={(e) => onSubmit(e)}>

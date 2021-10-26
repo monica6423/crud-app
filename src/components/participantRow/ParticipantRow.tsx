@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, SetStateAction, Dispatch } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { Participant } from "../../interfaces/";
 import "./ParticipantRow.scss";
@@ -6,9 +6,13 @@ import { GlobalContext } from "../../context/GlobalState";
 
 interface ParticipantRowProps {
   participant?: Participant;
+  setEditMode?: Dispatch<SetStateAction<{ [key: string]: boolean }>>;
+  editMode?: { [key: string]: boolean };
 }
 const ParticipantRow = ({
   participant = { name: "", phone: "", email: "", id: "" },
+  setEditMode,
+  editMode,
 }: ParticipantRowProps) => {
   const { deleteParticipant } = useContext(GlobalContext) as {
     participants: Participant[];
@@ -27,7 +31,13 @@ const ParticipantRow = ({
       </td>
       <td>
         <div className="edit-button-group">
-          <button className="edit-button">
+          <button
+            onClick={() =>
+              setEditMode &&
+              setEditMode({ ...editMode, [participant.id]: true })
+            }
+            className="edit-button"
+          >
             <FaPen className="icon" />
           </button>
           <button className="edit-button">

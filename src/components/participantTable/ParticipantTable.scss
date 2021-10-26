@@ -4,7 +4,7 @@ thead {
   height: 48px;
   tr {
     th {
-      color: #757575;
+      color: $main;
       font-size: 14px;
       line-height: 16px;
       font-weight: 500;
@@ -32,7 +32,7 @@ td {
 }
 
 tbody {
-  color: #505050;
+  color: $secondary;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;

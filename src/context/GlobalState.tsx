@@ -12,6 +12,7 @@ interface InitialState {
   participants: Participant[] | [];
   addParticipant: (participant: Participant) => void;
   deleteParticipant: (id: string) => void;
+  editParticipant: (participant: Participant) => void;
 }
 interface GlobalProviderProps {
   children?: ReactElement[] | ReactElement;
@@ -22,6 +23,7 @@ const initialState: InitialState = {
   participants: [],
   addParticipant: () => {},
   deleteParticipant: () => {},
+  editParticipant: () => {},
 };
 
 // Create context
@@ -67,12 +69,20 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
     });
   };
 
+  const editParticipant = (participant: Participant) => {
+    dispatch({
+      type: "EDIT_PARTICIPANT",
+      payload: participant,
+    });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         participants: state.participants,
         addParticipant,
         deleteParticipant,
+        editParticipant,
       }}
     >
       {children}

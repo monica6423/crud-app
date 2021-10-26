@@ -4,13 +4,14 @@ import { FiArrowDown } from "react-icons/fi";
 import { GlobalContext } from "../../context/GlobalState";
 import { Participant } from "../../interfaces/";
 import ParticipantRow from "../participantRow/ParticipantRow";
+import Form from "../form/Form";
 
 const ParticipantTable = () => {
   const { participants } = useContext(GlobalContext) as {
     participants: Participant[];
   };
-  console.log("participants", participants);
   const [participantArray, setParticipantArray] = useState<Participant[]>([]);
+  const [editMode, setEditMode] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     setParticipantArray(participants);
@@ -43,7 +44,21 @@ const ParticipantTable = () => {
       </thead>
       <tbody>
         {participantArray.map((participant: Participant, index: number) => {
-          return <ParticipantRow participant={participant} />;
+          return editMode[participant.id] === true ? (
+            <Form
+              key={participant.id}
+              participant={participant}
+              edit={true}
+              setEditMode={setEditMode}
+              editMode={editMode}
+            />
+          ) : (
+            <ParticipantRow
+              setEditMode={setEditMode}
+              editMode={editMode}
+              participant={participant}
+            />
+          );
         })}
       </tbody>
     </table>
