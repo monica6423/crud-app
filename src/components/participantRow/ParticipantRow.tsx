@@ -3,6 +3,7 @@ import { FaPen, FaTrash } from "react-icons/fa";
 import { Participant } from "../../interfaces/";
 import "./ParticipantRow.scss";
 import { GlobalContext } from "../../context/GlobalState";
+import { FieldConfig } from "../fieldConfig/FieldConfig";
 
 interface ParticipantRowProps {
   participant?: Participant;
@@ -20,15 +21,13 @@ const ParticipantRow = ({
   };
   return (
     <tr className="list" key={participant.id}>
-      <td>
-        <div>{participant.name}</div>
-      </td>
-      <td>
-        <div>{participant.email}</div>
-      </td>
-      <td>
-        <div>{participant.phone}</div>
-      </td>
+      {Object.keys(FieldConfig).map((key) => {
+        return (
+          <td>
+            <div>{participant[key]}</div>
+          </td>
+        );
+      })}
       <td>
         <div className="edit-button-group">
           <button

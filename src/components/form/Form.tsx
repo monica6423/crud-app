@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./Form.scss";
 import { GlobalContext } from "../../context/GlobalState";
 import { Participant } from "../../interfaces/";
+import { FieldConfig } from "../fieldConfig/FieldConfig";
 
 interface FormProps {
   participant?: Participant;
@@ -27,14 +28,13 @@ const Form = ({
   setSortConfig,
 }: FormProps) => {
   const { addParticipant, editParticipant } = useContext(GlobalContext);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Participant>({
     name: participant.name,
     email: participant.email,
     phone: participant.phone,
     id: participant.id,
   });
   const [error, setError] = useState<{ [key: string]: string }>({});
-  const { name, email, phone } = formData;
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -80,45 +80,23 @@ const Form = ({
 
   return (
     <tr>
-      <td>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={(e) => onChange(e)}
-          placeholder="Full name"
-        ></input>
-        {error.name && (
-          <div className="error-message">This is a required field.</div>
-        )}
-      </td>
-      <td>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => onChange(e)}
-          placeholder="E-mail address"
-        ></input>
-        {error.email && (
-          <div className="error-message">This is a required field.</div>
-        )}
-      </td>
-      <td>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={phone}
-          onChange={(e) => onChange(e)}
-          placeholder="Phone number"
-        ></input>
-        {error.phone && (
-          <div className="error-message">This is a required field.</div>
-        )}
-      </td>
+      {Object.keys(FieldConfig).map((key) => {
+        return (
+          <td>
+            <input
+              type="text"
+              id={FieldConfig[key].key}
+              name={FieldConfig[key].key}
+              value={formData[key]}
+              onChange={(e) => onChange(e)}
+              placeholder={FieldConfig[key].label}
+            ></input>
+            {error[key] && (
+              <div className="error-message">This is a required field.</div>
+            )}
+          </td>
+        );
+      })}
       <td className="button-cell">
         {edit ? (
           <>

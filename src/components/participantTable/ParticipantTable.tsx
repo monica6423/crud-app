@@ -5,6 +5,7 @@ import { GlobalContext } from "../../context/GlobalState";
 import { Participant } from "../../interfaces/";
 import ParticipantRow from "../participantRow/ParticipantRow";
 import Form from "../form/Form";
+import { FieldConfig } from "../fieldConfig/FieldConfig";
 
 const ParticipantTable = () => {
   const { participants } = useContext(GlobalContext) as {
@@ -54,24 +55,20 @@ const ParticipantTable = () => {
     <table>
       <thead>
         <tr>
-          <th onClick={() => requestSort("name")}>
-            <div>
-              Name
-              <FiArrowDown className={`rotate ${getClassNamesFor("name")}`} />
-            </div>
-          </th>
-          <th onClick={() => requestSort("email")}>
-            <div>
-              E-mail address
-              <FiArrowDown className={`rotate ${getClassNamesFor("email")}`} />
-            </div>
-          </th>
-          <th onClick={() => requestSort("phone")}>
-            <div>
-              Phone number
-              <FiArrowDown className={`rotate ${getClassNamesFor("phone")}`} />
-            </div>
-          </th>
+          {Object.keys(FieldConfig).map((key) => {
+            return (
+              <th onClick={() => requestSort(FieldConfig[key].key)}>
+                <div>
+                  {FieldConfig[key].label}
+                  <FiArrowDown
+                    className={`rotate ${getClassNamesFor(
+                      FieldConfig[key].key
+                    )}`}
+                  />
+                </div>
+              </th>
+            );
+          })}
           <th></th>
         </tr>
       </thead>
