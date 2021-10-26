@@ -1,0 +1,26 @@
+@import "../common.scss";
+
+thead {
+  height: 48px;
+  tr {
+    th {
+      color: #757575;
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: 500;
+    }
+  }
+}
+
+tr {
+  background-color: white;
+  border-bottom: 1pt solid #f1f1f1;
+}
+
+th,
+td {
+  width: calc(912px / 4);
+  max-width: calc(912px / 4);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

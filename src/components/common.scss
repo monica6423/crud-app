@@ -1,0 +1,13 @@
+$main: #f5f5f5;
+$border: #e5e5e5;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+  height: 100%;
+
+  tbody tr {
+    height: 72px;
+  }
+}

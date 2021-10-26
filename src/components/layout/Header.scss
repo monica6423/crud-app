@@ -1,0 +1,21 @@
+@import "../common.scss";
+
+.header {
+  background-color: #acb5bd;
+  height: 96px;
+}
+
+.logo {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  color: white;
+}
+
+.square {
+  height: 32px;
+  width: 32px;
+  background-color: white;
+  margin-left: 32px;
+  margin-right: 5px;
+}

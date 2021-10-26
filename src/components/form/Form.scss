@@ -1,0 +1,45 @@
+@import "../common.scss";
+
+td {
+  input {
+    height: 40px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+    font-size: 16px;
+    border: 1px solid #eeeeee;
+    font-weight: 500;
+    margin-left: 16px;
+    max-width: 200px;
+  }
+}
+
+.button-cell {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .button {
+    height: 40px;
+    background-color: #ededed;
+    border: none;
+    color: #505050;
+    font-weight: 500;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-right: 16px;
+  }
+}
+.error-message {
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+}
