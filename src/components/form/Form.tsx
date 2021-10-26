@@ -16,6 +16,7 @@ interface FormProps {
   edit: Boolean;
   setEditMode?: Dispatch<SetStateAction<{ [key: string]: boolean }>>;
   editMode?: { [key: string]: boolean };
+  setSortConfig?: Dispatch<SetStateAction<{ key: string; direction: string }>>;
 }
 
 const Form = ({
@@ -23,6 +24,7 @@ const Form = ({
   edit,
   setEditMode,
   editMode,
+  setSortConfig,
 }: FormProps) => {
   const { addParticipant, editParticipant } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
@@ -64,14 +66,15 @@ const Form = ({
     }
   };
 
-  const onCancel = (e: MouseEvent) => {
-    e.preventDefault();
-    setEditMode && setEditMode({ ...editMode, [formData.id]: false });
-  };
-
   const onSave = async (e: MouseEvent, formData: Participant) => {
     e.preventDefault();
     await editParticipant(formData);
+    setSortConfig && setSortConfig({ key: "", direction: "" });
+    setEditMode && setEditMode({ ...editMode, [formData.id]: false });
+  };
+
+  const onCancel = (e: MouseEvent) => {
+    e.preventDefault();
     setEditMode && setEditMode({ ...editMode, [formData.id]: false });
   };
 

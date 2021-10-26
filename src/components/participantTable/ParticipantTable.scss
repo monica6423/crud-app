@@ -8,6 +8,7 @@ thead {
       font-size: 14px;
       line-height: 16px;
       font-weight: 500;
+      cursor: pointer;
     }
   }
 }
@@ -42,4 +43,13 @@ tbody {
   opacity: 0.2;
   vertical-align: middle;
   margin-left: 10px;
+}
+
+.ascending {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.descending {
+  opacity: 1;
 }
