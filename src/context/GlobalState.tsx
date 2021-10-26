@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 interface InitialState {
   participants: Participant[] | [];
   addParticipant: (participant: Participant) => void;
+  deleteParticipant: (id: string) => void;
 }
 interface GlobalProviderProps {
   children?: ReactElement[] | ReactElement;
@@ -20,6 +21,7 @@ interface GlobalProviderProps {
 const initialState: InitialState = {
   participants: [],
   addParticipant: () => {},
+  deleteParticipant: () => {},
 };
 
 // Create context
@@ -28,6 +30,10 @@ export const GlobalContext = createContext(initialState);
 // Provider component
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  useEffect(() => {
+    fetchParticipants();
+  }, []);
 
   // Actions
   const fetchParticipants = async () => {
@@ -54,15 +60,19 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
     });
   };
 
-  useEffect(() => {
-    fetchParticipants();
-  }, []);
+  const deleteParticipant = (id: string) => {
+    dispatch({
+      type: "DELETE_PARTICIPANT",
+      payload: id,
+    });
+  };
 
   return (
     <GlobalContext.Provider
       value={{
         participants: state.participants,
         addParticipant,
+        deleteParticipant,
       }}
     >
       {children}
