@@ -3,13 +3,12 @@
 .edit-button-group {
   display: flex;
   justify-content: flex-end;
-
+  margin-right: 16px;
   .edit-button {
     background-color: white;
     border: none;
     cursor: pointer;
     margin-left: 16px;
-
     .icon {
       color: #909090;
       height: 24px;

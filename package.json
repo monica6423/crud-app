@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@types/react": "^17.0.33",
     "@types/uuid": "^8.3.1",
+    "cypress": "^8.7.0",
     "react-icons": "^4.3.1"
   }
 }

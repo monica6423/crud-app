@@ -51,6 +51,7 @@ const ParticipantTable = () => {
       return sortConfig.key === name ? sortConfig.direction : undefined;
     }
   };
+
   return (
     <table>
       <thead>

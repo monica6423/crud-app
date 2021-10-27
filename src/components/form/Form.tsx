@@ -68,9 +68,11 @@ const Form = ({
 
   const onSave = async (e: MouseEvent, formData: Participant) => {
     e.preventDefault();
-    await editParticipant(formData);
-    setSortConfig && setSortConfig({ key: "", direction: "" });
-    setEditMode && setEditMode({ ...editMode, [formData.id]: false });
+    if (validateMandatory(formData) === true) {
+      await editParticipant(formData);
+      setSortConfig && setSortConfig({ key: "", direction: "" });
+      setEditMode && setEditMode({ ...editMode, [formData.id]: false });
+    }
   };
 
   const onCancel = (e: MouseEvent) => {
@@ -85,7 +87,7 @@ const Form = ({
           <td>
             <input
               type="text"
-              id={FieldConfig[key].key}
+              id={`${FieldConfig[key].key}-${formData.id}`}
               name={FieldConfig[key].key}
               value={formData[key]}
               onChange={(e) => onChange(e)}

@@ -9,6 +9,18 @@ thead {
       line-height: 16px;
       font-weight: 500;
       cursor: pointer;
+      .rotate {
+        opacity: 0.2;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+      .ascending {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+      .descending {
+        opacity: 1;
+      }
     }
   }
 }
@@ -22,34 +34,29 @@ th,
 td {
   width: calc(912px / 4);
   max-width: calc(912px / 4);
-  text-overflow: ellipsis;
   overflow: hidden;
   text-align: left;
-
   div {
     padding-left: 24px;
     max-width: 176px;
   }
 }
-
+th:nth-child(2),
+td:nth-child(2) {
+  width: calc(912px / 4 + 40px);
+  max-width: calc(912px / 4 + 40px);
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: calc(912px / 4 - 40px);
+  max-width: calc(912px / 4 - 40px);
+}
 tbody {
   color: $secondary;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-}
-
-.rotate {
-  opacity: 0.2;
-  vertical-align: middle;
-  margin-left: 10px;
-}
-
-.ascending {
-  transform: rotate(180deg);
-  opacity: 1;
-}
-
-.descending {
-  opacity: 1;
+  tr {
+    height: 72px;
+  }
 }

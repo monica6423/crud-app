@@ -24,7 +24,7 @@ const ParticipantRow = ({
       {Object.keys(FieldConfig).map((key) => {
         return (
           <td>
-            <div>{participant[key]}</div>
+            <div id={`${key}-${participant.id}`}>{participant[key]}</div>
           </td>
         );
       })}
@@ -36,10 +36,11 @@ const ParticipantRow = ({
               setEditMode({ ...editMode, [participant.id]: true })
             }
             className="edit-button"
+            id="pen"
           >
             <FaPen className="icon" />
           </button>
-          <button className="edit-button">
+          <button className="edit-button" id="trash">
             <FaTrash
               className="icon"
               onClick={() => deleteParticipant(participant.id)}

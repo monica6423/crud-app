@@ -1,6 +1,7 @@
 @import "../common.scss";
 
 td {
+  position: relative;
   input {
     height: 40px;
     padding: 12px 20px;
@@ -34,13 +35,11 @@ td {
     margin: 4px 2px;
     cursor: pointer;
     margin-right: 16px;
-
     &.cancel-button {
-      color: #07f;
+      color: $button;
     }
-
     &.save-button {
-      background-color: #07f;
+      background-color: $button;
       color: white;
     }
   }
@@ -51,4 +50,7 @@ td {
   font-size: 12px;
   line-height: 15px;
   margin: 5px 0 0;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
 }
