@@ -1,24 +1,22 @@
-name: Deployment pipeline
+name: CI
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize]
+  workflow_dispatch:
 
 jobs:
-  deployment_pipeline:
-    runs-on: ubuntu-18.04
-    env: 
-      SKIP_PREFLIGHT_CHECK: true
+  dev_deploy:
+    runs-on: ubuntu-latest
+    environment: dev
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+
+  qa_deploy:
+    runs-on: ubuntu-latest
+    environment: qa
+    needs: dev_deploy
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
-      - name: npm install
-        run: npm install && cd client && npm install
-      - name: lint
-        run: npm run lint:all
+          node-version: '14.x'
