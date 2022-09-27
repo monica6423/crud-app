@@ -10,6 +10,7 @@ https://unruffled-shaw-252cb1.netlify.app/
 To initialize the project, run:
 
 ```
+nvm use 10.16.0
 npm install
 ```
 
